@@ -41,7 +41,7 @@ const Popup: React.FC = () => {
           <Col>
             <InputGroup>
               <FormSelect>
-                <option selected>Hiragana</option>
+                <option value="hiragana">Hiragana</option>
                 <option value="1" disabled>More soon</option>
               </FormSelect>
               <Button
