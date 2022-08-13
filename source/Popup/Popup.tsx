@@ -45,11 +45,11 @@ const Popup: React.FC = () => {
                 <option value="1" disabled>More soon</option>
               </FormSelect>
               <Button
-              variant="success"
+              variant={enabled ? 'success' : 'danger'}
               data-testid="enable-button"
               onClick={handleAction('enabled')}
               >
-                {enabled ? 'disable' : 'enable'}
+                {enabled ? 'enabled' : 'disabled'}
               </Button>
             </InputGroup>
           </Col>
