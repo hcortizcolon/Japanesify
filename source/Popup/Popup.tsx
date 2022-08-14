@@ -18,7 +18,7 @@ const Popup: React.FC = () => {
     setJapanesifyState(state);
   }, []);
 
-  const handleAction = (key: keyof JapanesifyState) => {
+  const handleAction = (key: keyof Omit<JapanesifyState, 'kana'>) => {
     return async (): Promise<void> => {
       const newState = { ...japanesifyState };
       newState[key] = !newState[key];

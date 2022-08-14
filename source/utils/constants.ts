@@ -394,6 +394,7 @@ export const getHiraganaMaps = (
 
 export const defaultJapanesifyState: JapanesifyState = {
   enabled: false,
+  kana: 'hiragana',
   n: false,
   a: false,
   i: false,

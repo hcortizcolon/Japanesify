@@ -1,5 +1,6 @@
 export type JapanesifyState = {
   enabled: boolean;
+  kana: 'hiragana' | 'katakana';
   n: boolean;
   a: boolean;
   i: boolean;

@@ -9,7 +9,7 @@ const canCovertText = (state: JapanesifyState): boolean => {
 
   let result = false;
   Object.entries(state).forEach(([k, value]) => {
-    if (k !== 'enabled' && value) {
+    if (k !== 'enabled' && k !== 'kana' && value) {
       result = true;
     }
   });
@@ -23,7 +23,7 @@ export const convertText = (node: Node, state: JapanesifyState): void => {
 
   // Make a list of characters to substitute
   Object.entries(state).forEach(([k, value]) => {
-    if (k !== 'enabled') {
+    if (k !== 'enabled' && k !== 'kana') {
       const key = k as keyof typeof hiraMap;
       if (value) {
         hiraMap[key].forEach((replace, find) => {
