@@ -1,5 +1,6 @@
 export const romaN = ['n'];
 export const hiraN = ['ん'];
+export const kataN = ['ン']
 
 export const hiraRomaA = [
   'wあ',
@@ -25,6 +26,30 @@ export const hiraA = [
   'か',
   'あ',
 ];
+export const kanaRomaA = [
+  'wア',
+  'yア',
+  'rア',
+  'mア',
+  'hア',
+  'nア',
+  'tア',
+  'sア',
+  'kア',
+  'a',
+];
+export const kanaA = [
+  'ワ',
+  'ラ',
+  'ヤ',
+  'マ',
+  'ハ',
+  'ナ',
+  'タ',
+  'サ',
+  'カ',
+  'ア',
+];
 
 export const hiraRomaI = [
   'rい',
@@ -37,7 +62,19 @@ export const hiraRomaI = [
   'i',
 ];
 export const hiraI = ['り', 'み', 'に', 'し', 'ち', 'ひ', 'き', 'い'];
+export const kanaRomaI = [
+  'rイ',
+  'mイ',
+  'nイ',
+  'shイ',
+  'chイ',
+  'hイ',
+  'kイ',
+  'i',
+];
+export const kanaI = ['リ', 'ミ', 'ニ', 'シ', 'チ', 'ヒ', 'キ', 'イ'];
 
+export const hiraU = ['つ', 'す', 'ぬ', 'ふ', 'む', 'る', 'ゆ', 'く', 'う'];
 export const hiraRomaU = [
   'tsう',
   'sう',
@@ -49,10 +86,23 @@ export const hiraRomaU = [
   'kう',
   'u',
 ];
-export const hiraU = ['つ', 'す', 'ぬ', 'ふ', 'む', 'る', 'ゆ', 'く', 'う'];
+export const kataU = ['ツ', 'ス', 'ヌ', 'フ', 'ム', 'ル', 'ユ', 'ク', 'ウ'];
+export const kataRomaU = [
+  'tsウ',
+  'sウ',
+  'nウ',
+  'fウ',
+  'mウ',
+  'rウ',
+  'yウ',
+  'kウ',
+  'u',
+];
 
 export const hiraRomaE = ['rえ', 'mえ', 'hえ', 'nえ', 'tえ', 'sえ', 'kえ', 'e'];
 export const hiraE = ['れ', 'め', 'へ', 'ね', 'て', 'せ', 'け', 'え'];
+export const kataRomaE = ['rエ', 'mエ', 'hエ', 'nエ', 'tエ', 'sエ', 'kエ', 'e'];
+export const kataE = ['レ', 'メ', 'ヘ', 'ネ', 'テ', 'セ', 'ケ', 'エ'];
 
 export const hiraRomaO = [
   'o',
@@ -78,8 +128,30 @@ export const hiraO = [
   'よ',
   'を',
 ];
-
-// hiraYoA.set('rya', 'りゃ'); hiraYoA.set('rや', 'りゃ'); hiraYoA.set('riゃ',  'りゃ');
+export const kataRomaO = [
+  'o',
+  'kオ',
+  'sオ',
+  'tオ',
+  'nオ',
+  'hオ',
+  'mオ',
+  'rオ',
+  'yオ',
+  'wオ',
+];
+export const kataO = [
+  'オ',
+  'コ',
+  'ソ',
+  'ト',
+  'ノ',
+  'ホ',
+  'モ',
+  'ロ',
+  'ヨ',
+  'ヲ',
+];
 
 export const romaHanDakYoonA = [
   'ga',

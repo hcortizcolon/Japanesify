@@ -25,6 +25,17 @@ import {
   hiraHanDakE,
   hiraHanDakO,
   romaHanDakO,
+  kataN,
+  kanaA,
+  kanaRomaA,
+  kanaI,
+  kanaRomaI,
+  kataRomaU,
+  kataU,
+  kataRomaE,
+  kataE,
+  kataO,
+  kataRomaO,
 } from '../../fixtures/testInputs';
 
 describe('Content Script', () => {
@@ -84,15 +95,6 @@ describe('Content Script', () => {
     expect(document.body.textContent).not.toContain('ん');
   });
 
-  test('does Not call convertText if no vowel is selected', () => {
-    ContentScript.togglePluginListener({
-      ...defaultJapanesifyState,
-      enabled: true,
-    });
-
-    expect(convertSpy).not.toBeCalled();
-  });
-
   test('does not call convert if hiragana character none are selected', () => {
     ContentScript.togglePluginListener({
       ...defaultJapanesifyState,
@@ -134,6 +136,43 @@ describe('Content Script', () => {
 
       ContentScript.togglePluginListener({
         ...defaultJapanesifyState,
+        enabled: false,
+        [checkbox]: true,
+      });
+      expect(document.body.textContent).toStrictEqual(original);
+    }
+  );
+
+    test.each`
+    checkbox | syllables    | katakanas
+    ${'n'}   | ${romaN}     | ${kataN}
+    ${'a'}   | ${kanaRomaA} | ${kanaA}
+    ${'i'}   | ${kanaRomaI} | ${kanaI}
+    ${'u'}   | ${kataRomaU} | ${kataU}
+    ${'e'}   | ${kataRomaE} | ${kataE}
+    ${'o'}   | ${kataRomaO} | ${kataO}
+  `(
+    'converts "$checkbox" syllables to "$katakanas" and back if enable button gets toggled',
+    ({ checkbox, syllables, katakanas }) => {
+      document.body.innerHTML = basic;
+
+      const original = document.body.textContent;
+
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'katakana',
+        enabled: true,
+        [checkbox]: true,
+      });
+
+      katakanas.forEach((_: string, i: number) => {
+        expect(document.body.textContent).toContain(katakanas[i]);
+        expect(document.body.textContent).not.toContain(syllables[i]);
+      });
+
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'katakana',
         enabled: false,
         [checkbox]: true,
       });
@@ -219,6 +258,36 @@ describe('Content Script', () => {
 
       ContentScript.togglePluginListener({
         ...defaultJapanesifyState,
+        n: true,
+        [vowels[i]]: true,
+      });
+      expect(document.body.textContent).toStrictEqual(original);
+    });
+  });
+ 
+  test('Should convert n kata ("ニ", "ナ", ...) to roma ("ni", "na", ...) when n and $vowel enabled and plugin gets disabled', () => {
+    document.body.innerHTML = basic;
+
+    const original = document.body.textContent;
+
+    const vowels = ['a', 'i', 'u', 'e', 'o'];
+    const hiras = ['ナ', 'ニ', 'ヌ', 'ネ', 'ノ'];
+    const hirasComb = ['ンア', 'ンイ', 'ンウ', 'ンエ', 'ンオ'];
+
+    vowels.forEach((_: string, i: number) => {
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'katakana',
+        enabled: true,
+        n: true,
+        [vowels[i]]: true,
+      });
+      expect(document.body.textContent).not.toContain(hirasComb[i]);
+      expect(document.body.textContent).toContain(hiras[i]);
+
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'katakana',
         n: true,
         [vowels[i]]: true,
       });
