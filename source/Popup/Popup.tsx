@@ -1,7 +1,7 @@
 import * as React from 'react';
 import browser from 'webextension-polyfill';
 import { defaultJapanesifyState, JAPANESIFY_STATE } from '../utils/constants';
-import { JapanesifyState, kana } from '../utils/types';
+import { JapanesifyState, kanas } from '../utils/types';
 import { getCurrentTabId } from '../utils/utils';
 import { Button, Container, Row, Col, InputGroup, FormSelect, FormCheck } from 'react-bootstrap';
 
@@ -20,7 +20,7 @@ const Popup: React.FC = () => {
 
   const dropdownChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newState = { ...japanesifyState }
-    newState.kana = event.target.value === kana[0] ? kana[0] : kana[1]
+    newState.kana = event.target.value as typeof kanas[number]
     await manageState(newState)
   }
 
@@ -39,7 +39,7 @@ const Popup: React.FC = () => {
     setJapanesifyState(newState)
   }
 
-  const { enabled, a, n, i, u, e, o, han, dak, yoon } = japanesifyState;
+  const { enabled, a, n, i, u, e, o, han, dak, yoon, kana } = japanesifyState;
 
   return (
     <section id="popup">
@@ -50,9 +50,9 @@ const Popup: React.FC = () => {
         <Row>
           <Col>
             <InputGroup>
-              <FormSelect onChange={dropdownChange} value={japanesifyState.kana}>
+              <FormSelect onChange={dropdownChange} value={kana}>
                 {
-                  kana.map(val => 
+                  kanas.map(val => 
                     <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.slice(1)}</option>
                   )
                 }
