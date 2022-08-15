@@ -1,6 +1,9 @@
+
+export const kana = ['hiragana', 'katakana'] as const
+
 export type JapanesifyState = {
   enabled: boolean;
-  kana: 'hiragana' | 'katakana';
+  kana: typeof kana[number];
   n: boolean;
   a: boolean;
   i: boolean;
