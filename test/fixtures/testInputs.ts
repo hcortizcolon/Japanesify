@@ -26,7 +26,7 @@ export const hiraA = [
   'か',
   'あ',
 ];
-export const kanaRomaA = [
+export const kataRomaA = [
   'wア',
   'yア',
   'rア',
@@ -38,7 +38,7 @@ export const kanaRomaA = [
   'kア',
   'a',
 ];
-export const kanaA = [
+export const kataA = [
   'ワ',
   'ラ',
   'ヤ',
@@ -62,7 +62,7 @@ export const hiraRomaI = [
   'i',
 ];
 export const hiraI = ['り', 'み', 'に', 'し', 'ち', 'ひ', 'き', 'い'];
-export const kanaRomaI = [
+export const kataRomaI = [
   'rイ',
   'mイ',
   'nイ',
@@ -72,7 +72,7 @@ export const kanaRomaI = [
   'kイ',
   'i',
 ];
-export const kanaI = ['リ', 'ミ', 'ニ', 'シ', 'チ', 'ヒ', 'キ', 'イ'];
+export const kataI = ['リ', 'ミ', 'ニ', 'シ', 'チ', 'ヒ', 'キ', 'イ'];
 
 export const hiraU = ['つ', 'す', 'ぬ', 'ふ', 'む', 'る', 'ゆ', 'く', 'う'];
 export const hiraRomaU = [
@@ -181,11 +181,26 @@ export const hiraHanDakYoonA = [
   'みゃ',
   'りゃ',
 ];
+export const kataHanDakYoonA = [
+  'ガ',
+  'ザ',
+  'ダ',
+  'バ',
+  'パ',
+  'キャ',
+  'シャ',
+  'チャ',
+  'ニャ',
+  'ヒャ',
+  'ミャ',
+  'リャ',
+];
 
 export const romaHanDakI = ['gi', 'ji', 'dji', 'bi', 'pi'];
 export const hiraHanDakI = ['ぎ', 'じ', 'ぢ', 'び', 'ぴ'];
+export const kataHanDakI = ['ギ', 'ジ', 'ヂ', 'ビ', 'ピ'];
 
-export const romaHanDakU = [
+export const romaHanDakYoonU = [
   'gu',
   'zu',
   'dzu',
@@ -199,7 +214,7 @@ export const romaHanDakU = [
   'myu',
   'ryu',
 ];
-export const hiraHanDakU = [
+export const hiraHanDakYoonU = [
   'ぐ',
   'ず',
   'づ',
@@ -213,9 +228,24 @@ export const hiraHanDakU = [
   'みゅ',
   'りゅ',
 ];
+export const kataHanDakYoonU = [
+  'グ',
+  'ズ',
+  'ヅ',
+  'ブ',
+  'プ',
+  'キュ',
+  'シュ',
+  'チュ',
+  'ニュ',
+  'ヒュ',
+  'ミュ',
+  'リュ',
+];
 
 export const romaHanDakE = ['ge', 'ze', 'de', 'be', 'pe'];
 export const hiraHanDakE = ['げ', 'ぜ', 'で', 'べ', 'ぺ'];
+export const kataHanDakE = ['ゲ', 'ゼ', 'デ', 'ベ', 'ペ'];
 
 export const romaHanDakO = [
   'go',
@@ -231,7 +261,7 @@ export const romaHanDakO = [
   'myo',
   'ryo',
 ];
-export const hiraHanDakO = [
+export const hiraHanDakYoonO = [
   'ご',
   'ぞ',
   'ど',
@@ -244,4 +274,18 @@ export const hiraHanDakO = [
   'ひょ',
   'みょ',
   'りょ',
+];
+export const kataHanDakYoonO = [
+  'ゴ',
+  'ゾ',
+  'ド',
+  'ボ',
+  'ポ',
+  'キョ',
+  'ショ',
+  'チョ',
+  'ニョ',
+  'ヒョ',
+  'ミョ',
+  'リョ',
 ];
