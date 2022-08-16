@@ -397,199 +397,259 @@ export const getKatakanaMaps = (
   previousState: JapanesifyState
 ) => {
   return {
-    n: new Map([['n', 'ン']]),
+    n: new Map([
+      previousState.enabled &&
+      previousState.n &&
+      previousState.kana === 'hiragana'
+        ? ['ん', 'ン']
+        : ['n', 'ン'],
+    ]),
     a: new Map([
-      ['wa', 'ワ'],
-      ['ra', 'ラ'],
-      ['ya', 'ヤ'],
-      ['ma', 'マ'],
-      ['ha', 'ハ'],
-      state.enabled && state.n ? ['ンa', 'ナ'] : ['na', 'ナ'],
-      ['ta', 'タ'],
-      ['sa', 'サ'],
-      ['ka', 'カ'],
-      ['a', 'ア'],
+      previousState.kana === 'hiragana' ? ['わ', 'ワ'] : ['wa', 'ワ'],
+      previousState.kana === 'hiragana' ? ['ら', 'ラ'] : ['ra', 'ラ'],
+      previousState.a && previousState.kana === 'hiragana'
+        ? ['や', 'ヤ']
+        : ['ya', 'ヤ'],
+      previousState.kana === 'hiragana' ? ['ま', 'マ'] : ['ma', 'マ'],
+      previousState.a && previousState.kana === 'hiragana'
+        ? ['は', 'ハ']
+        : ['ha', 'ハ'],
+      previousState.a && previousState.kana === 'hiragana'
+        ? ['な', 'ナ']
+        : state.enabled && state.n
+        ? ['ンa', 'ナ']
+        : ['na', 'ナ'],
+      previousState.kana === 'hiragana' ? ['た', 'タ'] : ['ta', 'タ'],
+      previousState.kana === 'hiragana' ? ['さ', 'サ'] : ['sa', 'サ'],
+      previousState.kana === 'hiragana' ? ['か', 'カ'] : ['ka', 'カ'],
+      previousState.a && previousState.kana === 'hiragana'
+        ? ['あ', 'ア']
+        : ['a', 'ア'],
     ]),
     i: new Map([
-      ['ri', 'リ'],
-      ['mi', 'ミ'],
-      state.enabled && state.n ? ['ンi', 'ニ'] : ['ni', 'ニ'],
-      ['shi', 'シ'],
-      ['chi', 'チ'],
-      ['hi', 'ヒ'],
-      ['ki', 'キ'],
-      ['i', 'イ'],
+      previousState.kana === 'hiragana' ? ['り', 'リ'] : ['ri', 'リ'],
+      previousState.kana === 'hiragana' ? ['み', 'ミ'] : ['mi', 'ミ'],
+      previousState.kana === 'hiragana'
+        ? ['に', 'ニ']
+        : state.enabled && state.n
+        ? ['ンi', 'ニ']
+        : ['ni', 'ニ'],
+      previousState.kana === 'hiragana' ? ['し', 'シ'] : ['shi', 'シ'],
+      previousState.kana === 'hiragana' ? ['ち', 'チ'] : ['chi', 'チ'],
+      previousState.kana === 'hiragana' ? ['ひ', 'ヒ'] : ['hi', 'ヒ'],
+      previousState.kana === 'hiragana' ? ['き', 'キ'] : ['ki', 'キ'],
+      previousState.kana === 'hiragana' ? ['い', 'イ'] : ['i', 'イ'],
     ]),
     u: new Map([
-      ['tsu', 'ツ'],
-      ['su', 'ス'],
-      state.enabled && state.n ? ['ンu', 'ヌ'] : ['nu', 'ヌ'],
-      ['fu', 'フ'],
-      ['mu', 'ム'],
-      ['ru', 'ル'],
-      ['yu', 'ユ'],
-      ['ku', 'ク'],
-      ['u', 'ウ'],
+      previousState.kana === 'hiragana' ? ['つ', 'ツ'] : ['tsu', 'ツ'],
+      previousState.kana === 'hiragana' ? ['す', 'ス'] : ['su', 'ス'],
+      previousState.kana === 'hiragana' ? ['ぬ', 'ヌ'] : state.enabled && state.n ? ['ンu', 'ヌ'] : ['nu', 'ヌ'],
+      previousState.kana === 'hiragana' ? ['ふ', 'フ'] : ['fu', 'フ'],
+      previousState.kana === 'hiragana' ? ['む', 'ム'] : ['mu', 'ム'],
+      previousState.kana === 'hiragana' ? ['る', 'ル'] : ['ru', 'ル'],
+      previousState.kana === 'hiragana' ? ['ゆ', 'ユ'] : ['yu', 'ユ'],
+      previousState.kana === 'hiragana' ? ['く', 'ク'] : ['ku', 'ク'],
+      previousState.kana === 'hiragana' ? ['う', 'ウ'] : ['u', 'ウ'],
     ]),
     e: new Map([
-      ['re', 'レ'],
-      ['me', 'メ'],
-      ['he', 'ヘ'],
-      state.enabled && state.n ? ['ンe', 'ネ'] : ['ne', 'ネ'],
-      ['te', 'テ'],
-      ['se', 'セ'],
-      ['ke', 'ケ'],
-      ['e', 'エ'],
+      previousState.kana === 'hiragana' ? ['れ', 'レ'] : ['re', 'レ'],
+      previousState.kana === 'hiragana' ? ['め', 'メ'] : ['me', 'メ'],
+      previousState.kana === 'hiragana' ? ['へ', 'ヘ'] : ['he', 'ヘ'],
+      previousState.kana === 'hiragana' ? ['ね', 'ネ'] : state.enabled && state.n ? ['ンe', 'ネ'] : ['ne', 'ネ'],
+      previousState.kana === 'hiragana' ? ['て', 'テ'] : ['te', 'テ'],
+      previousState.kana === 'hiragana' ? ['せ', 'セ'] : ['se', 'セ'],
+      previousState.kana === 'hiragana' ? ['け', 'ケ'] : ['ke', 'ケ'],
+      previousState.kana === 'hiragana' ? ['え', 'エ'] : ['e', 'エ'],
     ]),
     o: new Map([
-      ['wo', 'ヲ'],
-      ['yo', 'ヨ'],
-      ['ro', 'ロ'],
-      ['mo', 'モ'],
-      ['ho', 'ホ'],
-      state.enabled && state.n ? ['ンo', 'ノ'] : ['no', 'ノ'],
-      ['to', 'ト'],
-      ['so', 'ソ'],
-      ['ko', 'コ'],
-      ['o', 'オ'],
+      previousState.kana === 'hiragana' ? ['を', 'ヲ'] : ['wo', 'ヲ'],
+      previousState.kana === 'hiragana' ? ['よ', 'ヨ'] : ['yo', 'ヨ'],
+      previousState.kana === 'hiragana' ? ['ろ', 'ロ'] : ['ro', 'ロ'],
+      previousState.kana === 'hiragana' ? ['も', 'モ'] : ['mo', 'モ'],
+      previousState.kana === 'hiragana' ? ['ほ', 'ホ'] : ['ho', 'ホ'],
+      previousState.kana === 'hiragana' ? ['の', 'ノ'] : state.enabled && state.n ? ['ンo', 'ノ'] : ['no', 'ノ'],
+      previousState.kana === 'hiragana' ? ['と', 'ト'] : ['to', 'ト'],
+      previousState.kana === 'hiragana' ? ['そ', 'ソ'] : ['so', 'ソ'],
+      previousState.kana === 'hiragana' ? ['こ', 'コ'] : ['ko', 'コ'],
+      previousState.kana === 'hiragana' ? ['お', 'オ'] : ['o', 'オ'],
     ]),
     dak: new Map([
       state.a
         ? state.enabled
-          ? ['gア', 'ガ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['が', 'ガ']
+            : ['gア', 'ガ']
           : ['ga', 'ガ']
         : previousState.a
         ? ['ガ', 'ga']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['zア', 'ザ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['ざ', 'ザ']
+            : ['zア', 'ザ']
           : ['za', 'ザ']
         : previousState.a
         ? ['ザ', 'za']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['dア', 'ダ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['だ', 'ダ']
+            : ['dア', 'ダ']
           : ['da', 'ダ']
         : previousState.a
         ? ['ダ', 'da']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['bア', 'バ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['ば', 'バ']
+            : ['bア', 'バ']
           : ['ba', 'バ']
         : previousState.a
         ? ['バ', 'ba']
         : ['', ''],
       state.i
         ? state.enabled
-          ? ['gイ', 'ギ']
+          ? previousState.kana === 'hiragana' && previousState.i
+            ? ['ぎ', 'ギ']
+            : ['gイ', 'ギ']
           : ['gi', 'ギ']
         : previousState.i
         ? ['ギ', 'gi']
         : ['', ''],
       state.i
         ? state.enabled
-          ? ['djイ', 'ヂ']
+          ? previousState.kana === 'hiragana' && previousState.i
+            ? ['ぢ', 'ヂ']
+            : ['djイ', 'ヂ']
           : ['dji', 'ヂ']
         : previousState.i
         ? ['ヂ', 'dji']
         : ['', ''],
       state.i
         ? state.enabled
-          ? ['jイ', 'ジ']
+          ? previousState.kana === 'hiragana' && previousState.i
+            ? ['じ', 'ジ']
+            : ['jイ', 'ジ']
           : ['ji', 'ジ']
         : previousState.i
         ? ['ジ', 'ji']
         : ['', ''],
       state.i
         ? state.enabled
-          ? ['bイ', 'ビ']
+          ? previousState.kana === 'hiragana' && previousState.i
+            ? ['び', 'ビ']
+            : ['bイ', 'ビ']
           : ['bi', 'ビ']
         : previousState.i
         ? ['ビ', 'bi']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['gウ', 'グ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ぐ', 'グ']
+            : ['gウ', 'グ']
           : ['gu', 'グ']
         : previousState.u
         ? ['グ', 'gu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['dzウ', 'ヅ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['づ', 'ヅ']
+            : ['dzウ', 'ヅ']
           : ['dzu', 'ヅ']
         : previousState.u
         ? ['ヅ', 'dzu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['zウ', 'ズ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ず', 'ズ']
+            : ['zウ', 'ズ']
           : ['zu', 'ズ']
         : previousState.u
         ? ['ズ', 'zu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['bウ', 'ブ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ぶ', 'ブ']
+            : ['bウ', 'ブ']
           : ['bu', 'ブ']
         : previousState.u
         ? ['ブ', 'bu']
         : ['', ''],
       state.e
         ? state.enabled
-          ? ['gエ', 'ゲ']
+          ? previousState.kana === 'hiragana' && previousState.e
+            ? ['げ', 'ゲ']
+            : ['gエ', 'ゲ']
           : ['ge', 'ゲ']
         : previousState.e
         ? ['ゲ', 'ge']
         : ['', ''],
       state.e
         ? state.enabled
-          ? ['zエ', 'ゼ']
+          ? previousState.kana === 'hiragana' && previousState.e
+            ? ['ぜ', 'ゼ']
+            : ['zエ', 'ゼ']
           : ['ze', 'ゼ']
         : previousState.e
         ? ['ゼ', 'ze']
         : ['', ''],
       state.e
         ? state.enabled
-          ? ['dエ', 'デ']
+          ? previousState.kana === 'hiragana' && previousState.e
+            ? ['で', 'デ']
+            : ['dエ', 'デ']
           : ['de', 'デ']
         : previousState.e
         ? ['デ', 'de']
         : ['', ''],
       state.e
         ? state.enabled
-          ? ['bエ', 'ベ']
+          ? previousState.kana === 'hiragana' && previousState.e
+            ? ['べ', 'ベ']
+            : ['bエ', 'ベ']
           : ['be', 'ベ']
         : previousState.e
         ? ['ベ', 'be']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['gオ', 'ゴ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ご', 'ゴ']
+            : ['gオ', 'ゴ']
           : ['go', 'ゴ']
         : previousState.o
         ? ['ゴ', 'go']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['zオ', 'ゾ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ぞ', 'ゾ']
+            : ['zオ', 'ゾ']
           : ['zo', 'ゾ']
         : previousState.o
         ? ['ゾ', 'zo']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['dオ', 'ド']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ど', 'ド']
+            : ['dオ', 'ド']
           : ['do', 'ド']
         : previousState.o
         ? ['ド', 'do']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['bオ', 'ボ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ぼ', 'ボ']
+            : ['bオ', 'ボ']
           : ['bo', 'ボ']
         : previousState.o
         ? ['ボ', 'bo']
@@ -598,35 +658,45 @@ export const getKatakanaMaps = (
     han: new Map([
       state.a
         ? state.enabled
-          ? ['pア', 'パ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['ぱ', 'パ']
+            : ['pア', 'パ']
           : ['pa', 'パ']
         : previousState.a
         ? ['パ', 'pa']
         : ['', ''],
       state.i
         ? state.enabled
-          ? ['pイ', 'ピ']
+          ? previousState.kana === 'hiragana' && previousState.i
+            ? ['ぴ', 'ピ']
+            : ['pイ', 'ピ']
           : ['pi', 'ピ']
         : previousState.i
         ? ['ピ', 'pi']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['pウ', 'プ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ぷ', 'プ']
+            : ['pウ', 'プ']
           : ['pu', 'プ']
         : previousState.u
         ? ['プ', 'pu']
         : ['', ''],
       state.e
         ? state.enabled
-          ? ['pエ', 'ペ']
+          ? previousState.kana === 'hiragana' && previousState.e
+            ? ['ぺ', 'ペ']
+            : ['pエ', 'ペ']
           : ['pe', 'ペ']
         : previousState.e
         ? ['ペ', 'pe']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['pオ', 'ポ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ぽ', 'ポ']
+            : ['pオ', 'ポ']
           : ['po', 'ポ']
         : previousState.o
         ? ['ポ', 'po']
@@ -635,147 +705,189 @@ export const getKatakanaMaps = (
     yoon: new Map([
       state.a
         ? state.enabled
-          ? ['kヤ', 'キャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['きゃ', 'キャ']
+            : ['kヤ', 'キャ']
           : ['kya', 'kiャ']
         : previousState.a
         ? ['キャ', 'kya']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['sハ', 'シャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['しゃ', 'シャ']
+            : ['sハ', 'シャ']
           : ['sha', 'shiャ']
         : previousState.a
         ? ['シャ', 'sha']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['cハ', 'チャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['ちゃ', 'チャ']
+            : ['cハ', 'チャ']
           : ['cha', 'chiャ']
         : previousState.a
         ? ['チャ', 'cha']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['nヤ', 'ニャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['にゃ', 'ニャ']
+            : ['nヤ', 'ニャ']
           : ['nya', 'niャ']
         : previousState.a
         ? ['ニャ', 'nya']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['hヤ', 'ヒャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['ひゃ', 'ヒャ']
+            : ['hヤ', 'ヒャ']
           : ['hya', 'hiャ']
         : previousState.a
         ? ['ヒャ', 'hya']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['mヤ', 'ミャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['みゃ', 'ミャ']
+            : ['mヤ', 'ミャ']
           : ['mya', 'miャ']
         : previousState.a
         ? ['ミャ', 'mya']
         : ['', ''],
       state.a
         ? state.enabled
-          ? ['rヤ', 'リャ']
+          ? previousState.kana === 'hiragana' && previousState.a
+            ? ['りゃ', 'リャ']
+            : ['rヤ', 'リャ']
           : ['rya', 'riャ']
         : previousState.a
         ? ['リャ', 'rya']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['kヨ', 'キョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['きょ', 'キョ']
+            : ['kヨ', 'キョ']
           : ['kyo', 'kiョ']
         : previousState.o
         ? ['キョ', 'kyo']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['sホ', 'ショ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['しょ', 'ショ']
+            : ['sホ', 'ショ']
           : ['sho', 'shiョ']
         : previousState.o
         ? ['ショ', 'sho']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['cホ', 'チョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ちょ', 'チョ']
+            : ['cホ', 'チョ']
           : ['cho', 'chiョ']
         : previousState.o
         ? ['チョ', 'cho']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['nヨ', 'ニョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['にょ', 'ニョ']
+            : ['nヨ', 'ニョ']
           : ['nyo', 'niョ']
         : previousState.o
         ? ['ニョ', 'nyo']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['hヨ', 'ヒョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['ひょ', 'ヒョ']
+            : ['hヨ', 'ヒョ']
           : ['hyo', 'hiョ']
         : previousState.o
         ? ['ヒョ', 'hyo']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['mヨ', 'ミョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['みょ', 'ミョ']
+            : ['mヨ', 'ミョ']
           : ['myo', 'miョ']
         : previousState.o
         ? ['ミョ', 'myo']
         : ['', ''],
       state.o
         ? state.enabled
-          ? ['rヨ', 'リョ']
+          ? previousState.kana === 'hiragana' && previousState.o
+            ? ['りょ', 'リョ']
+            : ['rヨ', 'リョ']
           : ['ryo', 'riョ']
         : previousState.o
         ? ['リョ', 'ryo']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['kユ', 'キュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['きゅ', 'キュ']
+            : ['kユ', 'キュ']
           : ['kyu', 'kiュ']
         : previousState.u
         ? ['キュ', 'kyu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['shウ', 'シュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['しゅ', 'シュ']
+            : ['shウ', 'シュ']
           : ['shu', 'shiュ']
         : previousState.u
         ? ['シュ', 'shu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['chウ', 'チュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ちゅ', 'チュ']
+            : ['chウ', 'チュ']
           : ['chu', 'chiュ']
         : previousState.u
         ? ['チュ', 'chu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['nユ', 'ニュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['にゅ', 'ニュ']
+            : ['nユ', 'ニュ']
           : ['nyu', 'niュ']
         : previousState.u
         ? ['ニュ', 'nyu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['hユ', 'ヒュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['ひゅ', 'ヒュ']
+            : ['hユ', 'ヒュ']
           : ['hyu', 'hiュ']
         : previousState.u
         ? ['ヒュ', 'hyu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['mユ', 'ミュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['みゅ', 'ミュ']
+            : ['mユ', 'ミュ']
           : ['myu', 'miュ']
         : previousState.u
         ? ['ミュ', 'myu']
         : ['', ''],
       state.u
         ? state.enabled
-          ? ['rユ', 'リュ']
+          ? previousState.kana === 'hiragana' && previousState.u
+            ? ['りゅ', 'リュ']
+            : ['rユ', 'リュ']
           : ['ryu', 'riュ']
         : previousState.u
         ? ['リュ', 'ryu']

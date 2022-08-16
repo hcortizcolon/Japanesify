@@ -247,7 +247,7 @@ export const romaHanDakE = ['ge', 'ze', 'de', 'be', 'pe'];
 export const hiraHanDakE = ['げ', 'ぜ', 'で', 'べ', 'ぺ'];
 export const kataHanDakE = ['ゲ', 'ゼ', 'デ', 'ベ', 'ペ'];
 
-export const romaHanDakO = [
+export const romaHanDakYoonO = [
   'go',
   'zo',
   'do',

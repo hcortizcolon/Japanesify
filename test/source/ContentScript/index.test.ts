@@ -24,7 +24,7 @@ import {
   romaHanDakE,
   hiraHanDakE,
   hiraHanDakYoonO,
-  romaHanDakO,
+  romaHanDakYoonO,
   kataN,
   kataA,
   kataRomaA,
@@ -359,9 +359,9 @@ describe('Content Script', () => {
     vowel  | romas              | hiras
     ${'a'} | ${romaHanDakYoonA} | ${hiraHanDakYoonA}
     ${'i'} | ${romaHanDakI}     | ${hiraHanDakI}
-    ${'u'} | ${romaHanDakYoonU}     | ${hiraHanDakYoonU}
+    ${'u'} | ${romaHanDakYoonU} | ${hiraHanDakYoonU}
     ${'e'} | ${romaHanDakE}     | ${hiraHanDakE}
-    ${'o'} | ${romaHanDakO}     | ${hiraHanDakYoonO}
+    ${'o'} | ${romaHanDakYoonO} | ${hiraHanDakYoonO}
   `(
     'Should convert "$romas" to "$hiras" and back if enable button gets toggled',
     ({ vowel, romas, hiras }) => {
@@ -399,7 +399,7 @@ describe('Content Script', () => {
     ${'i'} | ${romaHanDakI}     | ${kataHanDakI}
     ${'u'} | ${romaHanDakYoonU} | ${kataHanDakYoonU}
     ${'e'} | ${romaHanDakE}     | ${kataHanDakE}
-    ${'o'} | ${romaHanDakO}     | ${kataHanDakYoonO}
+    ${'o'} | ${romaHanDakYoonO} | ${kataHanDakYoonO}
   `(
     'Should convert "$romas" to "$katas" and back if enable button gets toggled',
     ({ vowel, romas, katas }) => {
@@ -439,7 +439,7 @@ describe('Content Script', () => {
     ${'i'} | ${romaHanDakI}     | ${hiraHanDakI}
     ${'u'} | ${romaHanDakYoonU} | ${hiraHanDakYoonU}
     ${'e'} | ${romaHanDakE}     | ${hiraHanDakE}
-    ${'o'} | ${romaHanDakO}     | ${hiraHanDakYoonO}
+    ${'o'} | ${romaHanDakYoonO} | ${hiraHanDakYoonO}
   `(
     'Should convert "$hiras" to "$romas" if "$vowel" gets disabled',
     ({ vowel, romas, hiras }) => {
@@ -477,7 +477,7 @@ describe('Content Script', () => {
     ${'i'} | ${romaHanDakI}     | ${kataHanDakI}
     ${'u'} | ${romaHanDakYoonU} | ${kataHanDakYoonU}
     ${'e'} | ${romaHanDakE}     | ${kataHanDakE}
-    ${'o'} | ${romaHanDakO}     | ${kataHanDakYoonO}
+    ${'o'} | ${romaHanDakYoonO}     | ${kataHanDakYoonO}
   `(
     'Should convert "$katas" to "$romas" if "$vowel" gets disabled',
     ({ vowel, romas, katas }) => {
@@ -508,6 +508,56 @@ describe('Content Script', () => {
         yoon: true,
       });
       expect(document.body.textContent).toStrictEqual(original);
+    }
+  );
+
+    // ${'o'} | ${hiraHanDakYoonO} | ${kataHanDakYoonO}
+
+  test.each`
+    letter | hiras              | katas
+    ${'n'} | ${hiraN}           | ${kataN}
+    ${'a'} | ${hiraA}           | ${kataA}
+    ${'a'} | ${hiraHanDakYoonA} | ${kataHanDakYoonA}
+    ${'i'} | ${hiraI}           | ${kataI}
+    ${'i'} | ${hiraHanDakI}     | ${kataHanDakI}
+    ${'u'} | ${hiraU}           | ${kataU}
+    ${'u'} | ${hiraHanDakYoonU} | ${kataHanDakYoonU}
+    ${'e'} | ${hiraE}           | ${kataE}
+    ${'e'} | ${hiraHanDakE}     | ${kataHanDakE}
+    ${'o'} | ${hiraO}           | ${kataO}
+    ${'o'} | ${hiraHanDakYoonO} | ${kataHanDakYoonO}
+  `(
+    'Should convert "$hiras" to "$katas" if "$vowel" gets disabled',
+    ({ letter, hiras, katas }) => {
+      document.body.innerHTML = basic;
+
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'hiragana',
+        enabled: true,
+        [letter]: true,
+        dak: true,
+        han: true,
+        yoon: true,
+      });
+      hiras.forEach((_: string, i: number) => {
+        expect(document.body.textContent).toContain(hiras[i]);
+        expect(document.body.textContent).not.toContain(katas[i]);
+      });
+
+      ContentScript.togglePluginListener({
+        ...defaultJapanesifyState,
+        kana: 'katakana',
+        [letter]: true,
+        enabled: true,
+        dak: true,
+        han: true,
+        yoon: true,
+      });
+      hiras.forEach((_: string, i: number) => {
+        expect(document.body.textContent).toContain(katas[i]);
+        expect(document.body.textContent).not.toContain(hiras[i]);
+      });
     }
   );
 });
