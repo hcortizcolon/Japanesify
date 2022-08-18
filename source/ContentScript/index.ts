@@ -91,8 +91,8 @@ export const togglePluginListener = (state: JapanesifyState): void => {
       childList: true,
       subtree: true,
     });
+    previousState = state;
   }
-  previousState = state;
 };
 
 browser.runtime.onMessage.addListener(togglePluginListener);
