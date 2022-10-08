@@ -65,14 +65,19 @@ export const convertText = (node: Node, state: JapanesifyState): void => {
   }
 };
 
+let observer: MutationObserver
+
 export const togglePluginListener = (state: JapanesifyState): void => {
-  const observer = new MutationObserver((mutations) => {
+  if(observer) {
+    observer.disconnect()
+  }  
+  observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.addedNodes && mutation.addedNodes.length > 0) {
         // This DOM change was new nodes being added. Run our substitution
         // algorithm on each newly added node.
         mutation.addedNodes.forEach((newNode) => {
-          convertText(newNode, state);
+            convertText(newNode, state);
         });
       }
     });
@@ -86,13 +91,16 @@ export const togglePluginListener = (state: JapanesifyState): void => {
     canCovertText(previousState)
   ) {
     convertText(document.body, state);
-    // TODO: add test case that validate we stop observing when disabled.
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-    previousState = state;
+
+    if(canCovertText(state)) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
   }
+
+  previousState = state;
 };
 
 browser.runtime.onMessage.addListener(togglePluginListener);
