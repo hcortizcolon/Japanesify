@@ -1,6 +1,6 @@
 import * as React from 'react';
 import browser from 'webextension-polyfill';
-import { defaultJapanesifyState, JAPANESIFY_STATE } from '../utils/constants';
+import { defaultJapanesifyState } from '../utils/constants';
 import { JapanesifyState, kanas } from '../utils/types';
 import { getCurrentTabId } from '../utils/utils';
 import { Button, Container, Row, Col, InputGroup, FormSelect, FormCheck } from 'react-bootstrap';
@@ -11,11 +11,11 @@ const Popup: React.FC = () => {
   );
 
   React.useEffect(() => {
-    const state = JSON.parse(
-      window.localStorage.getItem(JAPANESIFY_STATE) ||
-        JSON.stringify(defaultJapanesifyState)
-    ) as JapanesifyState;
-    setJapanesifyState(state);
+    const setState = async () => {
+      const state = await browser.storage.local.get() as JapanesifyState || defaultJapanesifyState
+      setJapanesifyState(state);
+    }
+    setState()
   }, []);
 
   const dropdownChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -35,7 +35,7 @@ const Popup: React.FC = () => {
   const manageState = async (newState: JapanesifyState) => {
     const tabId = await getCurrentTabId()
     browser.tabs.sendMessage(tabId, newState)
-    localStorage.setItem(JAPANESIFY_STATE, JSON.stringify(newState))
+    await browser.storage.local.set(newState)
     setJapanesifyState(newState)
   }
 
