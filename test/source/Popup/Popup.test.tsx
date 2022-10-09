@@ -14,6 +14,7 @@ describe('Popup Component', () => {
         (browser.storage.local.get as jest.Mock).mockReset();
         (browser.storage.local.set as jest.Mock).mockReset();
         querySpy.mockResolvedValueOnce([{id: 2} as Tabs.Tab]);
+        (browser.storage.local.get as jest.Mock).mockResolvedValueOnce(defaultJapanesifyState)
     })
 
     test('loads with button text disabled', () => {
@@ -154,7 +155,8 @@ describe('Popup Component', () => {
     })
 
     test('renders button based on localStorage values', async () => {
-        (browser.storage.local.get as jest.Mock).mockResolvedValueOnce({...defaultJapanesifyState, enabled: true})
+        (browser.storage.local.get as jest.Mock).mockReset();
+        (browser.storage.local.get as jest.Mock).mockResolvedValueOnce({...defaultJapanesifyState, enabled: true});
         await act(async () => {
             render(<Popup/>)
         })
@@ -174,7 +176,8 @@ describe('Popup Component', () => {
       ${'"'}   | ${'dak'}
       ${'きゃ'} | ${'yoon'}
     `('renders $hiragana check box based on localStorage values', async ({hiragana, letter} : {hiragana: string, letter: string}) => {
-        (browser.storage.local.get as jest.Mock).mockResolvedValueOnce({...defaultJapanesifyState, [letter]: true})
+        (browser.storage.local.get as jest.Mock).mockReset();
+        (browser.storage.local.get as jest.Mock).mockResolvedValueOnce({...defaultJapanesifyState, [letter]: true});
 
         await act(async () => {
             render(<Popup/>)

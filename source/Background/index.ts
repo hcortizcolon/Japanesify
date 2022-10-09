@@ -1,10 +1,10 @@
 import browser from 'webextension-polyfill';
-import { JapanesifyState } from '../utils/types';
-import { getCurrentTabId } from '../utils/utils';
+import { getCurrentTabId, getState } from '../utils/utils';
 
 export const sendMessage = async (): Promise<void> => {
   const tabId = await getCurrentTabId();
-  const state = (await browser.storage.local.get() as JapanesifyState)
+  const state = await getState();
+  
   browser.tabs.sendMessage(tabId, state);
 };
 
